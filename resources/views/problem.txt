@@ -1,0 +1,18 @@
+1.Product edit page a kivabe option update korte hoy?
+2.slider ba carousel a kivabe akta ke active rakhte hoy?
+3.category kivabe parent and child category add kora jay?
+
+
+4.home page a category wise show korate hole ki puro page load na niye shudhu category ongsho ta load korano jay ki? mane ami home page theke onno page a route dara pass korte chacchi nah
+
+5.product details er niche slider kivabe upload korbo?
+
+
+
+
+
+
+
+
+
+
