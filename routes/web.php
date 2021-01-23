@@ -40,15 +40,10 @@ Route::get('/shop/product-details/{product_id}',[ProductDetailsController::class
 
 
 Route::post('/shop/add-to-cart', [CartController::class, 'add_to_cart']);
-
-
-
-
-
-
-
-
 Route::get('/shop/show-cart', [CartController::class, 'show_cart']);
+
+
+
 
 
 Route::view('/blog', 'frontend/blog');

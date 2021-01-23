@@ -25,6 +25,11 @@ use App\Http\Controllers\backend\SliderController;
 |
 */
 
+
+
+
+
+
 /*
 |       Frontend Route
 | =========================
