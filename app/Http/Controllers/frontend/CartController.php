@@ -44,4 +44,18 @@ class CartController extends Controller
 
         return view('frontend/shop/add-to-cart',$all_published_category);
     }
+    public function delete_to_cart(Request $request, $rowId)
+    {
+        Cart::update($rowId,0);
+        return redirect('/shop/show-cart');
+    }
+    public function cart_update(Request $request)
+    {
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+        // print_r($qty);
+        Cart::update($rowId,$qty);
+        return redirect('/shop/show-cart');
+    }
+
 }

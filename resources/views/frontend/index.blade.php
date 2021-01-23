@@ -167,8 +167,20 @@
                                                     <div class="overlay-content">
                                                         <h2>${{ $featured_list->price }}</h2>
                                                         <p>{{ $featured_list->product_name }}</p>
-                                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                                class="fa fa-shopping-cart"></i>Add to cart</a>
+
+
+                                                        <form action="{{url('/shop/add-to-cart')}}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="product_quantity" min="1" max="20" value="1"/>
+                                                            <input type="hidden" name="product_id" value="{{$featured_list->product_id }}">
+                                                            <button type="submit" class="btn btn-fefault cart">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                                Add to cart
+                                                            </button>
+
+                                                            </form>
+
+
                                                     </div>
                                                 </div>
                                             </div>

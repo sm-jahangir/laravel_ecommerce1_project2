@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ProductDetailsController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\CustomerController;
+use App\Http\Controllers\frontend\CheckoutController;
 
 // Backend Controller
 use App\Http\Controllers\backend\AuthController;
@@ -32,30 +34,33 @@ use App\Http\Controllers\backend\SliderController;
 Route::get('/', [HomeController::class, 'index']); //FRONTEND HOME ROUTE
 Route::get('/product_by_cat_home/{id}', [HomeController::class, 'show_by_cat_home']);
 Route::get('/product_by_brand_home/{id}', [HomeController::class, 'show_by_brand_home']);
-// Route::get('/shop/shop', '');
 Route::get('/shop/shop', [ProductDetailsController::class, 'shop']);
 Route::get('/shop/product-details/{product_id}',[ProductDetailsController::class, 'index']);
 
-
-
-
 Route::post('/shop/add-to-cart', [CartController::class, 'add_to_cart']);
 Route::get('/shop/show-cart', [CartController::class, 'show_cart']);
+Route::get('/delete-to-cart/{rowId}', [CartController::class, 'delete_to_cart']);
+Route::post('/cart-update', [CartController::class, 'cart_update']);
+
+Route::view('/login', 'frontend/login');
+Route::post('/customer/submit', [CustomerController::class, 'submit']);
+Route::post('customer/login', [CustomerController::class, 'login']);
+Route::get('customer_logout', [CustomerController::class, 'logout']);
 
 
 
+
+Route::group(['middleware' => ['customerlogincheck']], function () {
+    Route::get('checkout', [CheckoutController::class, 'cart_to_checkout']);
+});
 
 
 Route::view('/blog', 'frontend/blog');
 Route::view('/blog-single', 'frontend/blog-single');
 // Route::view('/cart', 'frontend/cart');
-Route::view('/checkout', 'frontend/checkout');
 Route::view('/contact-us', 'frontend/contact-us');
-Route::view('/login', 'frontend/login');
 Route::view('/404', 'frontend/404');
 Route::view('/product-details', 'frontend/product-details');
-
-
 
 
 

@@ -46,6 +46,9 @@ class Kernel extends HttpKernel
         'logincheck' => [
             \App\Http\Middleware\backend\AdminAuth::class,
         ],
+        'customerlogincheck' => [
+            \App\Http\Middleware\frontend\CustomerAuth::class,
+        ],
     ];
 
     /**

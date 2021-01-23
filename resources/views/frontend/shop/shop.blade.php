@@ -85,13 +85,24 @@
                                     <img src="{{asset('storage/product').'/'.$item->product_image}}" alt="" />
                                     <h2>${{$item->price}}</h2>
                                     <p>{{$item->product_name}}</p>
+
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>${{$item->price}}</h2>
                                         <p>{{$item->product_name}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <form action="{{url('/shop/add-to-cart')}}" method="POST">
+                                                    {{ csrf_field() }}
+
+                                                <label>Quantity:</label>
+                                                <input type="number" name="product_quantity" min="1" max="20" value="1"/>
+                                                <input type="hidden" name="product_id" value="{{$item->product_id }}">
+                                                <button type="submit" class="btn btn-fefault cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

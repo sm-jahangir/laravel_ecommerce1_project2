@@ -11,55 +11,59 @@
             </ol>
         </div>
         <div class="table-responsive cart_info">
-            @if (Cart::count()>0)
+            @if(Cart::count()>0)
 
-            <table class="table table-condensed">
-                <thead>
-                    <tr class="cart_menu">
-                        <td class="image">Item</td>
-                        <td class="description"></td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (Cart::content() as $item)
-                        <tr>
-                            <td class="cart_product">
-                                <a href=""><img style="height: 100px;width:100px" src="{{asset('storage/product').'/'.$item->options->image}}" alt=""></a>
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="">{{$item->name}}</a></h4>
-                                <p>Web ID: 1089772</p>
-                            </td>
-                            <td class="cart_price">
-                                <p>${{$item->price}}</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$item->qty}}"
-                                        autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> - </a>
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price">${{$item->total}}</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                            </td>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description"></td>
+                            <td class="price">Price</td>
+                            <td class="quantity">Quantity</td>
+                            <td class="total">Total</td>
+                            <td></td>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
 
+                        @foreach(Cart::content() as $item)
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img style="height: 100px;width:100px"
+                                            src="{{ asset('storage/product').'/'.$item->options->image }}"
+                                            alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">{{ $item->name }}</a></h4>
+                                    <p>Web ID: 1089772</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>${{ $item->price }}</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <form action="{{url('/cart-update')}}" method="post">
+                                            {{ csrf_field() }}
+                                            <input class="cart_quantity_input" type="text" name="qty" value="{{ $item->qty }}" autocomplete="off" size="2">
+                                            <input type="hidden" name="rowId"  value="{{$item->rowId}}">
+                                            <input class="btn btn-success btn-sm" type="submit" value="Update"
+                                                name="submit">
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">${{ $item->total }}</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete"
+                                        href="{{ url('/delete-to-cart').'/'.$item->rowId }}"><i
+                                            class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
 
-
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             @else
                 <h2>Cart Empty</h2>
             @endif
@@ -135,13 +139,13 @@
             <div class="col-sm-12">
                 <div class="total_area">
                     <ul>
-                        <li>Cart Sub Total <span>${{Cart::subtotal()}}</span></li>
-                        <li>Eco Tax <span>${{Cart::tax()}}</span></li>
+                        <li>Cart Sub Total <span>${{ Cart::subtotal() }}</span></li>
+                        <li>Eco Tax <span>${{ Cart::tax() }}</span></li>
                         <li>Shipping Cost <span>Free</span></li>
-                        <li>Total <span>${{Cart::total()}}</span></li>
+                        <li>Total <span>${{ Cart::total() }}</span></li>
                     </ul>
                     <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+                    <a class="btn btn-default check_out" href="{{url('/checkout')}}">Check Out</a>
                 </div>
             </div>
         </div>

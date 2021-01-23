@@ -31,7 +31,7 @@
 							<ul class="nav nav-pills">
 								<li><a href="{{url('admin/dashboard')}}"><i class="fa fa-phone"></i>Admin</a></li>
 								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i>  {{ session('customer_name') }}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -87,8 +87,13 @@
 								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{{url('shop/show-cart')}}"><i class="fa fa-shopping-cart"></i><span style="color:red;">{{Cart::count()}}</span> Cart</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{url('shop/show-cart')}}"><i class="fa fa-shopping-cart"></i><span style="color:red;">{{Cart::count()}}</span> Cart</a></li>
+
+                                @if (session('CUSTOMER_ID'))
+                                <li><a href="{{url('customer_logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
+                                @else
+                                <li><a href="{{url('login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                                @endif
 							</ul>
 						</div>
 					</div>
