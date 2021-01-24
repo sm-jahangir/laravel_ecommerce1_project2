@@ -20,6 +20,8 @@ class CustomerController extends Controller
         $request->session()->flash('msg', 'Sign Up Complete');
         return redirect('/login');
     }
+
+    
     public function login(Request $request)
     {
         $customer_email = $request->input('customer_email');
